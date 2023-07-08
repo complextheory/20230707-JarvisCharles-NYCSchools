@@ -1,6 +1,7 @@
 package com.r4ziel.nycschools.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.google.android.material.snackbar.Snackbar
@@ -17,6 +19,7 @@ import com.r4ziel.a20230707_jarvischarles_nycschools.databinding.FragmentSchools
 import com.r4ziel.nycschools.entitiy.School
 import com.r4ziel.nycschools.utilities.SchoolClickListener
 import com.r4ziel.nycschools.utilities.SnackBarHelper
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -69,15 +72,22 @@ class SchoolsListFragment: Fragment(), SnackBarHelper, View.OnClickListener {
                 viewModel.uiState.collect{ uiState ->
                     when(uiState) {
                         is SchoolsViewModel.SchoolsUIState.Loading -> {
+                            Log.wtf("Fragment", "UI State Loading")
                             binding.swipRefreshView.isRefreshing = true
+
                         }
                         is SchoolsViewModel.SchoolsUIState.Success -> {
+                            Log.wtf("Fragment", "UI State Success")
+
                             binding.swipRefreshView.isRefreshing = false
                             binding.rvSchoolList.isVisible = true
                             binding.viewNoDataAvailable.isVisible = false
+                            uiState.schools?.let { schoolsListAdapter.update(it) }
 
                         }
                         is SchoolsViewModel.SchoolsUIState.Error -> {
+                            Log.wtf("Fragment", "UI State Error")
+
                             binding.swipRefreshView.isRefreshing = false
                             showSnackbar(uiState.exception.message)
                             binding.viewNoDataAvailable.isVisible = true
@@ -92,7 +102,7 @@ class SchoolsListFragment: Fragment(), SnackBarHelper, View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        binding.swipRefreshView.isRefreshing = true
+//        binding.swipRefreshView.isRefreshing = true
     }
 
     fun showSnackbar(message: String?) {

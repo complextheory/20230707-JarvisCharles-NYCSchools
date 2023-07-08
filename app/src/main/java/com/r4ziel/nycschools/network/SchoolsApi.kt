@@ -21,7 +21,7 @@ interface SchoolsApi {
    fun fetchSchools(
         @Query(value = "\$\$app_token", encoded = true) appKey: String
 //        @Query(value = "app_token", encoded = true) app_token: String
-   ): Observable<Response<List<School>>>
+   ): Observable<List<School>>
 
 //    @GET("f9bf-2cp4.json")
 //   suspend fun fetchSatResults(): List<Sat>
