@@ -16,11 +16,11 @@ import java.util.StringTokenizer
 interface SchoolsApi {
 
 
-    @Headers("Accept: application/json",
-            "X-App-Token: rbccFODNzIdbx1bpvXh1LtbMh")
+    @Headers("ACCEPT: application/json")
     @GET("s3k6-pzi2.json")
    fun fetchSchools(
-//        @Query(value = "\$\$app_token", encoded = true) appKey: String
+        @Query(value = "\$\$app_token", encoded = true) appKey: String
+//        @Query(value = "app_token", encoded = true) app_token: String
    ): Observable<Response<List<School>>>
 
 //    @GET("f9bf-2cp4.json")

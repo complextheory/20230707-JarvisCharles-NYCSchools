@@ -18,7 +18,7 @@ class SchoolsRemoteDataSource(
 
     val schools: Flow<Response<List<School>>> = flow {
         while (true) {
-            val response = schoolsApi.fetchSchools()
+            val response = schoolsApi.fetchSchools("rbccFODNzIdbx1bpvXh1LtbMh")
 
 //            emit(response) // Emits the result of the request to the flow
             delay(refreshIntervalMs) // Suspends the coroutine for some time

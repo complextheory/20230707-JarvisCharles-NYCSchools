@@ -11,7 +11,7 @@ import retrofit2.Response
  */
 class SchoolsRepository(private val api: SchoolsApi) {
 
-    fun getSchools(): Observable<Response<List<School>>> = api.fetchSchools()
+    fun getSchools(): Observable<Response<List<School>>> = api.fetchSchools("rbccFODNzIdbx1bpvXh1LtbMh")
 
 
 //    val schools: Flow<Response<List<School>>> = schoolsRemoteDataSource.schools
