@@ -11,15 +11,16 @@ import retrofit2.Response
  * Created by Jarvis Charles on 7/7/23.
  */
 class SchoolsRemoteDataSource(
-    private val schoolsApi: SchoolsApi,
-    private val refreshIntervalMs: Long = 5000
+    private val schoolsApi: SchoolsApi
 ){
 
-    val schools: Flow<List<School>> = flow {
+    private val refreshIntervalMs: Long = 5000
+
+    val schools: Flow<Response<List<School>>> = flow {
         while (true) {
             val response = schoolsApi.fetchSchools()
 
-            emit(response) // Emits the result of the request to the flow
+//            emit(response) // Emits the result of the request to the flow
             delay(refreshIntervalMs) // Suspends the coroutine for some time
         }
     }

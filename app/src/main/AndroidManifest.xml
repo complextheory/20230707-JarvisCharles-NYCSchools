@@ -15,8 +15,9 @@
         android:theme="@style/Theme.20230707JarvisCharlesNYCSchools"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.r4ziel.nycschools.MainActivity"
             android:exported="true"
+            android:label="@string/app_name"
             android:theme="@style/Theme.20230707JarvisCharlesNYCSchools.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

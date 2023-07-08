@@ -58,7 +58,12 @@ class NetworkService {
             }
         })
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        okBuilder.addInterceptor(loggingInterceptor)
+        okBuilder.addInterceptor(loggingInterceptor).addInterceptor { chain ->
+
+            val newRequest = chain.request().newBuilder().addHeader("Authorization", "rbccFODNzIdbx1bpvXh1LtbMh").build()
+            chain.proceed(newRequest)
+        }
+
         return okBuilder.build()
     }
 }
