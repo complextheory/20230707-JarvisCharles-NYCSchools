@@ -1,7 +1,6 @@
 package com.r4ziel.nycschools.modules
 
 import com.r4ziel.nycschools.repository.SchoolsRepository
-import com.r4ziel.nycschools.network.SchoolsRemoteDataSource
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
@@ -10,5 +9,4 @@ import org.koin.dsl.module
  */
 val repositoryModule = module {
     singleOf(::SchoolsRepository)
-    singleOf(::SchoolsRemoteDataSource)
 }

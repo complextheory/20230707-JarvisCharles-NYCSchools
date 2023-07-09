@@ -6,13 +6,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.r4ziel.nycschools.ui.SchoolsViewModel" />
+            type="com.r4ziel.nycschools.ui.schools.SchoolsViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/parent_coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#5C9CDD">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swip_refresh_view"
@@ -23,10 +24,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_employee_list"
+                <ImageView
+                    android:id="@+id/nyc_image"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nyc"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                </ImageView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_school_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:scrollbars="vertical"
                     android:orientation="vertical"
                     android:layout_margin="15dp"
@@ -37,7 +49,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nyc_image"
                     tools:listitem="@layout/item_view_school">
                 </androidx.recyclerview.widget.RecyclerView>
 

@@ -21,12 +21,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        setSupportActionBar(binding.toolbar)
-
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-        navGraph.setStartDestination(R.id.SchoolsListFragment)
+        navGraph.setStartDestination(R.id.schoolsListFragment)
         navController.graph = navGraph
     }
 }

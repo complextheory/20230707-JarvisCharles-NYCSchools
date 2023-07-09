@@ -1,6 +1,6 @@
 package com.r4ziel.nycschools.modules
 
-import com.r4ziel.nycschools.ui.SchoolsViewModel
+import com.r4ziel.nycschools.ui.schools.SchoolsViewModel
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 

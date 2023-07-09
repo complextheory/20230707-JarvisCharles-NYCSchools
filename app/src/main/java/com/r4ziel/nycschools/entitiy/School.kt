@@ -13,137 +13,135 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 data class School (
     @Json(name = "dbn")
-    val dbn: String,
+    val dbn: String?,
     @Json(name = "school_name")
-    val schoolName: String,
+    val schoolName: String?,
     @Json(name = "boro")
-    val boro: String,
+    val boro: String?,
     @Json(name = "overview_paragraph")
-    val overviewParagraph: String,
+    val overviewParagraph: String?,
     @Json(name = "school_10th_seats")
-    val school10thSeats: String,
+    val school10thSeats: String?,
     @Json(name = "academicopportunities1")
-    val academicOpportunities1: String,
+    val academicOpportunities1: String?,
     @Json(name = "academicopportunities2")
-    val academicOpportunities2: String,
-    @Json(name = "academicopportunities3")
-    val academicOpportunities3: String,
+    val academicOpportunities2: String?,
     @Json(name = "academicopportunities4")
-    val academicOpportunities4: String,
+    val academicOpportunities4: String?,
     @Json(name = "academicopportunities5")
-    val academicOpportunities5: String,
+    val academicOpportunities5: String?,
     @Json(name = "ell_programs")
-    val ellPrograms: String,
+    val ellPrograms: String?,
     @Json(name = "language_classes")
-    val languageClasses: String,
+    val languageClasses: String?,
     @Json(name = "diplomaendorsements")
-    val diplomaEndorsements: String,
+    val diplomaEndorsements: String?,
     @Json(name = "neighborhood")
-    val neighborhood: String,
+    val neighborhood: String?,
     @Json(name = "shared_space")
-    val sharedSpace: String,
+    val sharedSpace: String?,
     @Json(name = "campus_name")
-    val campusName: String,
+    val campusName: String?,
     @Json(name = "building_code")
-    val buildingCode: String,
+    val buildingCode: String?,
     @Json(name = "location")
-    val location: String,
+    val location: String?,
     @Json(name = "phone_number")
-    val phoneNumber: String,
+    val phoneNumber: String?,
     @Json(name = "fax_number")
-    val faxNumber: String,
+    val faxNumber: String?,
     @Json(name = "school_email")
-    val schoolEmail: String,
+    val schoolEmail: String?,
     @Json(name = "website")
-    val website: String,
+    val website: String?,
     @Json(name = "subway")
-    val subway: String,
+    val subway: String?,
     @Json(name = "bus")
-    val bus: String,
+    val bus: String?,
     @Json(name = "grades2018")
-    val grades2018: String,
+    val grades2018: String?,
     @Json(name = "finalgrades")
-    val finalGrades: String,
+    val finalGrades: String?,
     @Json(name = "total_students")
-    val totalStudents: String,
+    val totalStudents: String?,
     @Json(name = "start_time")
-    val startTime: String,
+    val startTime: String?,
     @Json(name = "end_time")
-    val endTime: String,
+    val endTime: String?,
     @Json(name = "extracurricular_activities")
-    val extraCurricularActivities: String,
+    val extraCurricularActivities: String?,
     @Json(name = "psal_sports_girls")
-    val psalSportsGirls: String,
+    val psalSportsGirls: String?,
     @Json(name = "school_sports")
-    val schoolSports: String,
+    val schoolSports: String?,
     @Json(name = "graduation_rate")
-    val graduationRate: String,
+    val graduationRate: String?,
     @Json(name = "attendance_rate")
-    val attendanceRate: String,
+    val attendanceRate: String?,
     @Json(name = "pct_stu_enough_variety")
-    val pctStuEnoughVariety: String,
+    val pctStuEnoughVariety: String?,
     @Json(name = "college_career_rate")
-    val collegeCareerRate: String,
+    val collegeCareerRate: String?,
     @Json(name = "pct_stu_safe")
-    val pctStuSafe: String,
+    val pctStuSafe: String?,
     @Json(name = "pbat")
-    val pbat: String,
+    val pbat: String?,
     @Json(name = "international")
-    val international: String,
+    val international: String?,
     @Json(name = "school_accessibility_description")
-    val schoolAccessibilityDescription: String,
+    val schoolAccessibilityDescription: String?,
     @Json(name = "program1")
-    val program1: String,
+    val program1: String?,
     @Json(name = "code1")
-    val code1: String,
+    val code1: String?,
     @Json(name = "interest1")
-    val interest1: String,
+    val interest1: String?,
     @Json(name = "method1")
-    val method1: String,
+    val method1: String?,
     @Json(name = "seats9ge1")
-    val seats9e1: String,
+    val seats9e1: String?,
     @Json(name = "grade9gefilledflag1")
-    val grade9GeFilledFlag1: String,
+    val grade9GeFilledFlag1: String?,
     @Json(name = "grade9geapplicants1")
-    val grade9GeApplicants1: String,
+    val grade9GeApplicants1: String?,
     @Json(name = "seats9swd1")
-    val seats9Swd1: String,
+    val seats9Swd1: String?,
     @Json(name = "grade9swdfilledflag1")
-    val seats9SwdFilledFlag1: String,
+    val seats9SwdFilledFlag1: String?,
     @Json(name = "grade9swdapplicants1")
-    val seats9SwdApplicants1: String,
+    val seats9SwdApplicants1: String?,
     @Json(name = "seats101")
-    val seats101: String,
+    val seats101: String?,
     @Json(name = "eligibility1")
-    val eligibility1: String,
+    val eligibility1: String?,
     @Json(name = "grade9geapplicantsperseat1")
-    val grade9GeApplicantsPerSeat1: String,
+    val grade9GeApplicantsPerSeat1: String?,
     @Json(name = "grade9swdapplicantsperseat1")
-    val grade9SwdApplicantsPerSeat1: String,
+    val grade9SwdApplicantsPerSeat1: String?,
     @Json(name = "primary_address_line_1")
-    val primaryAddressLine1: String,
+    val primaryAddressLine1: String?,
     @Json(name = "city")
-    val city: String,
+    val city: String?,
     @Json(name = "zip")
-    val zip: String,
+    val zip: String?,
     @Json(name = "state_code")
-    val statCode: String,
+    val statCode: String?,
     @Json(name = "latitude")
-    val latitude: String,
+    val latitude: String?,
     @Json(name = "longitude")
-    val longitude: String,
+    val longitude: String?,
     @Json(name = "community_board")
-    val communityBoard: String,
+    val communityBoard: String?,
     @Json(name = "council_district")
-    val councilDistrict: String,
+    val councilDistrict: String?,
     @Json(name = "census_tract")
-    val censusTract: String,
+    val censusTract: String?,
     @Json(name = "bin")
-    val bin: String,
+    val bin: String?,
     @Json(name = "bbl")
-    val bbl: String,
+    val bbl: String?,
     @Json(name = "nta")
-    val nta: String,
+    val nta: String?,
     @Json(name = "borough")
-    val borough: String,
+    val borough: String?,
     ): Parcelable
