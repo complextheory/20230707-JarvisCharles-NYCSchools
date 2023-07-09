@@ -29,8 +29,7 @@ class SchoolsListFragment: Fragment(), SnackBarHelper, View.OnClickListener {
     private val viewModel: SchoolsViewModel by viewModel()
     private lateinit var binding: FragmentSchoolsBinding
     private lateinit var snapHelper: SnapHelper
-    private lateinit var snackBar: Snackbar
-
+    private lateinit var errorSnackBar: Snackbar
 
     private val schoolClickListener = object: SchoolClickListener {
         override fun onSchoolClicked(school: School) {
@@ -43,7 +42,7 @@ class SchoolsListFragment: Fragment(), SnackBarHelper, View.OnClickListener {
     private val schoolsListAdapter = SchoolsListAdapter(schoolClickListener = schoolClickListener)
 
     override fun onClick(p0: View?) {
-        snackBar.dismiss()
+        errorSnackBar.dismiss()
     }
 
     override fun onCreateView(
@@ -56,64 +55,30 @@ class SchoolsListFragment: Fragment(), SnackBarHelper, View.OnClickListener {
         binding.viewModel = viewModel
         binding.rvSchoolList.adapter = schoolsListAdapter
         snapHelper.attachToRecyclerView(binding.rvSchoolList)
-        binding.swipRefreshView.setOnRefreshListener {
-            viewModel.refresh()
+        binding.swipeRefreshView.setOnRefreshListener {
+            viewModel.refreshData()
         }
-
-//        lifecycleScope.launch {
-//            // repeatOnLifecycle launches the block in a new coroutine every time the
-//            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                // Trigger the flow and start listening for values.
-//                // Note that this happens when lifecycle is STARTED and stops
-//                // collecting when the lifecycle is STOPPED
-//
-//                viewModel.uiState.collect{ uiState ->
-//
-//                    when(uiState) {
-//                        is SchoolsViewModel.SchoolsUIState.Loading -> {
-//                            Log.wtf("Fragment", "UI State Loading")
-//                            binding.swipRefreshView.isRefreshing = true
-//
-//                        }
-//                        is SchoolsViewModel.SchoolsUIState.Success -> {
-//                            Log.wtf("Fragment", "UI State Success")
-//
-//                            binding.swipRefreshView.isRefreshing = false
-//                            binding.rvSchoolList.isVisible = true
-//                            binding.viewNoDataAvailable.isVisible = false
-//                            uiState.schools?.let { schoolsListAdapter.update(it) }
-//
-//                        }
-//                        is SchoolsViewModel.SchoolsUIState.Error -> {
-//                            Log.wtf("Fragment", "UI State Error")
-//
-//                            binding.swipRefreshView.isRefreshing = false
-//                            showSnackbar(uiState.exception.message)
-//                            binding.viewNoDataAvailable.isVisible = true
-//                            binding.rvSchoolList.isVisible = false
-//                        }
-//                    }
-//                }
-//            }
-//        }
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        binding.swipRefreshView.isRefreshing = true
-        viewModel.refresh()
-        observeViewModel()
+        binding.swipeRefreshView.isRefreshing = true
+        viewModel.refreshData()
+        observeViewModelLiveData()
     }
 
-    private fun observeViewModel() {
+
+    /**
+     * ObserveViewModel: Responsible for observing liveData objects from ViewModel
+     */
+    private fun observeViewModelLiveData() {
         viewModel.schoolsLiveData.observe(viewLifecycleOwner) {schools ->  
-            binding.swipRefreshView.isRefreshing = false
+            binding.swipeRefreshView.isRefreshing = false
 
             if (schools.isEmpty()){
-                snackBar = createSnackBar(binding.parentCoordinatorLayout, getString(R.string.something_went_wrong), this)
-                snackBar.show()
+                errorSnackBar = createSnackBar(binding.parentCoordinatorLayout, getString(R.string.something_went_wrong), this)
+                errorSnackBar.show()
             }
 
             binding.viewNoDataAvailable.isVisible = schools.isEmpty()
@@ -123,26 +88,29 @@ class SchoolsListFragment: Fragment(), SnackBarHelper, View.OnClickListener {
 
         viewModel.errorHandlerLiveData.observe(viewLifecycleOwner) {throwable ->
 
-            binding.swipRefreshView.isRefreshing = false
+            binding.swipeRefreshView.isRefreshing = false
             binding.viewNoDataAvailable.isVisible = true
 
             when(throwable) {
                 is HttpException -> {
-                   showSnackbar(throwable.message)
+                   showErrorSnackBar(throwable.message)
                 }
                 is IOException -> {
-                    showSnackbar(throwable.message)
+                    showErrorSnackBar(throwable.message)
                 }
                 else -> {
-                    showSnackbar(getString(R.string.something_went_wrong))
+                    showErrorSnackBar(getString(R.string.something_went_wrong))
                 }
             }
         }
     }
 
-    fun showSnackbar(message: String?) {
-        snackBar = createSnackBar(binding.parentCoordinatorLayout, message,this)
-        snackBar.show()
+    /**
+     * ShowSnackBar: Responsible for taking in an error string and displaying the errorSnackbar
+     */
+    private fun showErrorSnackBar(message: String?) {
+        errorSnackBar = createSnackBar(binding.parentCoordinatorLayout, message,this)
+        errorSnackBar.show()
     }
 
 }
