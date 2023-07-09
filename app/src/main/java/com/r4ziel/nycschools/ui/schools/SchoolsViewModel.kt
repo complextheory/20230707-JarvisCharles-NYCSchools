@@ -17,16 +17,18 @@ class SchoolsViewModel(
 ): ViewModel() {
 
     // Backing property to avoid state updates from other classes
-    private val _loadingState = MutableStateFlow(SchoolsUIState.Loading(""))
-    private val _successState = MutableStateFlow(SchoolsUIState.Success(emptyList()))
-    private val _errorState = MutableStateFlow(SchoolsUIState.Error(Throwable()))
-    // The UI collects from this StateFlow to get its state updates
-    var uiState: StateFlow<SchoolsUIState> = _loadingState
+//    private val _loadingState = MutableStateFlow(SchoolsUIState.Loading(""))
+//    private val _successState = MutableStateFlow(SchoolsUIState.Success(emptyList()))
+//    private val _errorState = MutableStateFlow(SchoolsUIState.Error(Throwable()))
+//    // The UI collects from this StateFlow to get its state updates
+//    var uiState: StateFlow<SchoolsUIState> = _loadingState
 
-    var schoolsLiveData: MutableLiveData<List<School>> = savedState.getLiveData<MutableLiveData<List<School>>>(
-        SCHOOL_DATA_KEY).switchMap {
-        MutableLiveData<List<School>>()
-    } as MutableLiveData<List<School>>
+    var schoolsLiveData = MutableLiveData<List<School>>()
+
+//    = savedState.getLiveData<MutableLiveData<List<School>>>(
+//        SCHOOL_DATA_KEY).switchMap {
+//        MutableLiveData<List<School>>()
+//    } as MutableLiveData<List<School>>
 
     var errorHandlerLiveData = MutableLiveData<Throwable>()
 
@@ -43,26 +45,35 @@ class SchoolsViewModel(
 
     fun refresh(){
         Log.wtf("ViewModel", "Refreshing")
-        _loadingState.value = SchoolsUIState.Loading("")
-        uiState = _loadingState
+//        _loadingState.value = SchoolsUIState.Loading("")
+//        uiState = _loadingState
 
 
-        schoolsRepository.getSchools().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+        schoolsRepository.getSchools()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
 
             {
                 Log.wtf("ViewModel", "Collect Response Success")
 
-                schoolsLiveData.value = it
-                _successState.value = SchoolsUIState.Success(it)
-                uiState = _successState
-                updateSavedState()
+                try {
+                    schoolsLiveData.value = it
+//                _successState.value = SchoolsUIState.Success(it)
+//                uiState = _successState
+                    updateSavedState()
+                }catch (throwable: Throwable) {
+                    Log.wtf("ViewModel", "Catch Success Error ${throwable.message}")
+
+                }
+
             },
             {
 //                errorHandlerLiveData.postValue(it)
                 Log.wtf("ViewModel", "Catch Response Error")
                 schoolsLiveData.value = emptyList()
-                _errorState.value = SchoolsUIState.Error(it)
-                uiState = _errorState
+//                _errorState.value = SchoolsUIState.Error(it)
+//                uiState = _errorState
                 updateSavedState()
             }
         )

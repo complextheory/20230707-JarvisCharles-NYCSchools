@@ -1,6 +1,7 @@
 package com.r4ziel.nycschools.ui.details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Created by Jarvis Charles on 7/9/23.
  */
 class DetailsFragment: Fragment() {
-
 
     private val viewModel: DetailsViewModel by viewModel()
 
@@ -28,23 +28,25 @@ class DetailsFragment: Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-        viewModel.schoolName = args.schoolName
+        binding.viewModel = viewModel
+        Log.wtf("Fragment", "School arg name is: ${args.schoolName}")
         return binding.root
     }
-
-
+    
     override fun onResume() {
         super.onResume()
+        viewModel.updateSchoolName(args.schoolName)
         viewModel.fetchSatScores()
         observeViewModel()
     }
 
     private fun observeViewModel(){
-        viewModel.satList.observe(viewLifecycleOwner) { satScores ->
+        viewModel.satList.observe(viewLifecycleOwner) { satScore ->
 
-            binding.tvMathScores.text = satScores[0].mathScores
-            binding.tvReadingScores.text = satScores[0].readingScores
-            binding.tvWritingScores.text = satScores[0].writingScores
+            Log.wtf("Details Fragment", "School Name is: ${satScore.schoolName}")
+            binding.tvMathScores.text = satScore.mathScores
+            binding.tvReadingScores.text = satScore.readingScores
+            binding.tvWritingScores.text = satScore.writingScores
         }
     }
 }

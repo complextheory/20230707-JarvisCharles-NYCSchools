@@ -35,7 +35,7 @@ class SchoolsListFragment: Fragment(), SnackBarHelper, View.OnClickListener {
     private val schoolClickListener = object: SchoolClickListener {
         override fun onSchoolClicked(school: School) {
             Toast.makeText(requireContext(), school.schoolName, Toast.LENGTH_SHORT).show()
-             val directions = SchoolsListFragmentDirections.actionSchoolsFragmentToDetailsFragment(school.schoolName)
+             val directions = SchoolsListFragmentDirections.actionSchoolsFragmentToDetailsFragment(school.schoolName.toString())
             binding.root.findNavController().navigate(directions)
         }
     }
