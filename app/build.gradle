@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -55,6 +56,8 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0n")
+    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
 
     //OKHTTP Dependencies
     implementation "com.squareup.okhttp3:okhttp:4.10.0"

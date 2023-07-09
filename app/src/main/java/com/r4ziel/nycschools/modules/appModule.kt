@@ -2,6 +2,7 @@ package com.r4ziel.nycschools.modules
 
 import com.r4ziel.nycschools.network.NetworkService
 import com.r4ziel.nycschools.network.SchoolsApi
+import kotlinx.coroutines.CoroutineDispatcher
 import org.koin.dsl.module
 
 /**

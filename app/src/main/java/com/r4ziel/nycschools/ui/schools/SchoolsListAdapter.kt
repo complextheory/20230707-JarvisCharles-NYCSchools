@@ -1,4 +1,4 @@
-package com.r4ziel.nycschools.ui
+package com.r4ziel.nycschools.ui.schools
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
