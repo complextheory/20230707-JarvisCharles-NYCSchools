@@ -26,6 +26,8 @@ data class School (
     val academicOpportunities1: String?,
     @Json(name = "academicopportunities2")
     val academicOpportunities2: String?,
+    @Json(name = "academicopportunities3")
+    val academicOpportunities3: String?,
     @Json(name = "academicopportunities4")
     val academicOpportunities4: String?,
     @Json(name = "academicopportunities5")
@@ -68,10 +70,16 @@ data class School (
     val startTime: String?,
     @Json(name = "end_time")
     val endTime: String?,
+    @Json(name= "addtl_info1")
+    val additionalInfo: String?,
     @Json(name = "extracurricular_activities")
     val extraCurricularActivities: String?,
+    @Json(name = "psal_sports_boys")
+    val psalSportsBoys: String?,
     @Json(name = "psal_sports_girls")
     val psalSportsGirls: String?,
+    @Json(name = "psal_sports_coed")
+    val psalSportsCoed: String?,
     @Json(name = "school_sports")
     val schoolSports: String?,
     @Json(name = "graduation_rate")

@@ -3,9 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.r4ziel.nycschools.ui.details.DetailsViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/nyc_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nyc"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </ImageView>
 
         <TextView
             android:id="@+id/tv_title"
@@ -13,8 +30,22 @@
             android:layout_height="wrap_content"
             android:padding="6dp"
             android:textAlignment="center"
-            android:textSize="18sp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="25sp"
+            android:text="@{viewModel.vmSchoolName}"
+            app:layout_constraintTop_toBottomOf="@id/nyc_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_sat_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="SAT SCORES:"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -24,8 +55,10 @@
             android:layout_height="wrap_content"
             android:padding="6dp"
             android:textAlignment="center"
-            android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Math:"
+            app:layout_constraintTop_toBottomOf="@id/tv_sat_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -46,7 +79,9 @@
             android:layout_height="wrap_content"
             android:padding="6dp"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Reading:"
             app:layout_constraintTop_toBottomOf="@id/tv_math_scores"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -68,7 +103,9 @@
             android:layout_height="wrap_content"
             android:padding="6dp"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Writing"
             app:layout_constraintTop_toBottomOf="@id/tv_reading_scores"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -84,7 +121,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-
+        <include layout="@layout/view_no_data_available"
+            android:id="@+id/view_no_data_available" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

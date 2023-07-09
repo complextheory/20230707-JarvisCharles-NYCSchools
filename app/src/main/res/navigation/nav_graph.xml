@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_schools">
 
         <action
-            android:id="@+id/action_SchoolsFragment_to_DetailsFragment"
+            android:id="@+id/action_schoolsFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
@@ -26,9 +26,5 @@
             android:name = "schoolName"
             app:argType="string"
             app:nullable="false"/>
-
-        <action
-            android:id="@+id/action_DetailsFragment_to_SchoolsFragment"
-            app:destination="@id/schoolsListFragment" />
     </fragment>
 </navigation>

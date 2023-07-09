@@ -1,6 +1,7 @@
 package com.r4ziel.nycschools.modules
 
 import com.r4ziel.nycschools.ui.schools.SchoolsViewModel
+import com.r4ziel.nycschools.ui.details.DetailsViewModel
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
@@ -9,4 +10,5 @@ import org.koin.dsl.module
  */
 val viewModelModule = module {
     singleOf(::SchoolsViewModel)
+    singleOf(::DetailsViewModel)
 }

@@ -16,7 +16,7 @@
         android:background="#5C9CDD">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swip_refresh_view"
+            android:id="@+id/swipe_refresh_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

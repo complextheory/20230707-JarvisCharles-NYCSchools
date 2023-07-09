@@ -11,8 +11,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class SatScore (
-    @Json(name = "dbn")
-    val dbn: String,
 
     @Json(name ="school_name")
     val schoolName: String,
