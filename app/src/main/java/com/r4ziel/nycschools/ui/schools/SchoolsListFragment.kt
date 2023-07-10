@@ -52,7 +52,6 @@ class SchoolsListFragment: Fragment(), SnackBarHelper, View.OnClickListener {
     ): View {
         snapHelper = LinearSnapHelper()
         binding = FragmentSchoolsBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
         binding.rvSchoolList.adapter = schoolsListAdapter
         snapHelper.attachToRecyclerView(binding.rvSchoolList)
         binding.swipeRefreshView.setOnRefreshListener {
@@ -73,7 +72,7 @@ class SchoolsListFragment: Fragment(), SnackBarHelper, View.OnClickListener {
      * ObserveViewModel: Responsible for observing liveData objects from ViewModel
      */
     private fun observeViewModelLiveData() {
-        viewModel.schoolsLiveData.observe(viewLifecycleOwner) {schools ->  
+        viewModel.schoolsLiveData.observe(viewLifecycleOwner) {schools ->
             binding.swipeRefreshView.isRefreshing = false
 
             if (schools.isEmpty()){

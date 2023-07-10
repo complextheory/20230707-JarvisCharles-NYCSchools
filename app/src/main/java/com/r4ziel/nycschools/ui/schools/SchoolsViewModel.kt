@@ -1,7 +1,7 @@
 package com.r4ziel.nycschools.ui.schools
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.r4ziel.nycschools.entitiy.School
 import com.r4ziel.nycschools.repository.SchoolsRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
