@@ -23,7 +23,6 @@ class SchoolsViewModel(
      * initial fetch from onResume
      */
     fun refreshData(){
-        Log.wtf("ViewModel", "Refreshing")
 
         schoolsRepository.getSchools()
             .subscribeOn(Schedulers.io())
@@ -31,20 +30,17 @@ class SchoolsViewModel(
             .subscribe(
 
             {
-                Log.wtf("ViewModel", "Collect Response Success")
 
                 try {
                     schoolsLiveData.value = it
                 }catch (throwable: Throwable) {
                     errorHandlerLiveData.value = throwable
-                    Log.wtf("ViewModel", "Catch Success Error ${throwable.message}")
 
                 }
 
             },
             {
 
-                Log.wtf("ViewModel", "Catch Response Error")
                 errorHandlerLiveData.value = it
                 schoolsLiveData.value = emptyList()
             }
