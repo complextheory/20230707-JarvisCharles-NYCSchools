@@ -1,7 +1,6 @@
 package com.r4ziel.nycschools.ui.details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +16,9 @@ class DetailsFragment: Fragment() {
 
     private val viewModel: DetailsViewModel by viewModel()
 
-    lateinit var binding: FragmentDetailsBinding
+    private lateinit var binding: FragmentDetailsBinding
 
     private val args: DetailsFragmentArgs by navArgs()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +27,6 @@ class DetailsFragment: Fragment() {
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        Log.wtf("Fragment", "School arg name is: ${args.schoolName}")
         return binding.root
     }
     
@@ -37,13 +34,18 @@ class DetailsFragment: Fragment() {
         super.onResume()
         viewModel.updateSchoolName(args.schoolName)
         viewModel.fetchSatScores()
-        observeViewModel()
+        observeViewModelLiveData()
     }
 
-    private fun observeViewModel(){
+    /**
+     * ObserveViewModel: Responsible for observing liveData objects from ViewModel
+     */
+    private fun observeViewModelLiveData(){
         viewModel.satList.observe(viewLifecycleOwner) { satScore ->
 
-            Log.wtf("Details Fragment", "School Name is: ${satScore.schoolName}")
+            if (satScore.schoolName == "" )
+                binding.viewNoDataAvailable.isVisible = true
+
             binding.tvMathScores.text = satScore.mathScores
             binding.tvReadingScores.text = satScore.readingScores
             binding.tvWritingScores.text = satScore.writingScores

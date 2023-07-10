@@ -19,6 +19,7 @@
         <activity
             android:name="com.r4ziel.nycschools.MainActivity"
             android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@style/Theme.20230707JarvisCharlesNYCSchools.NoActionBar">
             <intent-filter>

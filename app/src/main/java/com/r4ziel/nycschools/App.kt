@@ -2,7 +2,6 @@ package com.r4ziel.nycschools
 
 import android.app.Application
 import com.r4ziel.nycschools.modules.appModule
-import com.r4ziel.nycschools.modules.dataModule
 import com.r4ziel.nycschools.modules.repositoryModule
 import com.r4ziel.nycschools.modules.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -18,7 +17,7 @@ class App: Application() {
 
         startKoin {
             androidContext(this@App)
-            modules(listOf(appModule, dataModule, repositoryModule, viewModelModule))
+            modules(listOf(appModule,repositoryModule, viewModelModule))
         }
     }
 }
